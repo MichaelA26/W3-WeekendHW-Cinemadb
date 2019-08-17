@@ -1,4 +1,3 @@
-# require('pg')
 require_relative('../db/sql_runner')
 require_relative('./film')
 require_relative('./customer')
@@ -7,7 +6,7 @@ require_relative('./customer')
 class Ticket
 
   attr_reader :id
-  attr_accessor :fee
+  attr_accessor :film_id, :customer_id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']

@@ -1,11 +1,10 @@
-# require('pg')
 require_relative('../db/sql_runner')
 require_relative('./ticket.rb')
 
 class Customer
 
   attr_reader :id
-  attr_accessor :first_name, :last_name
+  attr_accessor :name, :funds
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
