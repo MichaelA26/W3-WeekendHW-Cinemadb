@@ -46,18 +46,33 @@ class Film
     return Customer.map_items(customer_data)
   end
 
-  def tickets()
-    sql = "SELECT * FROM tickets where film_id = $1"
-    values = [@id]
-    ticket_data = SqlRunner.run(sql, values)
-    return ticket_data.map{|ticket| Ticket.new(ticket)}
-  end
-
-  def self.all()
+  def self.all
     sql = "SELECT * FROM films"
     film_data = SqlRunner.run(sql)
-    return Film.map_items(films_data)
+    return Film.map_items(film_data)
   end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM films
+    WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, values)
+    film = self.new(result.first)
+    return film
+  end
+
+  # def tickets()
+  #   sql = "SELECT * FROM tickets where film_id = $1"
+  #   values = [@id]
+  #   ticket_data = SqlRunner.run(sql, values)
+  #   return ticket_data.map{|ticket| Ticket.new(ticket)}
+  # end
+
+  # def self.all()
+  #   sql = "SELECT * FROM films"
+  #   film_data = SqlRunner.run(sql)
+  #   return Film.map_items(film_data)
+  # end
 
   def self.delete_all()
     sql = "DELETE FROM films"
@@ -68,5 +83,6 @@ class Film
     result = data.map{|film| Film.new(film)}
     return result
   end
+
 
 end

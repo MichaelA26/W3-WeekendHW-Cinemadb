@@ -2,7 +2,8 @@ require_relative('./db/sql_runner')
 require_relative('./models/ticket')
 require_relative('./models/film')
 require_relative('./models/customer')
-require ('pry')
+
+require('pry')
 
 film1 = Film.new( { 'title' => 'Once Upon a Time in Hollywood', 'price' => 10 } )
 film1.save
@@ -26,4 +27,5 @@ ticket3 = Ticket.new( { 'customer_id' => customer3.id, 'film_id' => film3.id } )
 ticket3.save
 
 binding.pry
+
 nil

@@ -62,4 +62,13 @@ class Customer
     return result
   end
 
+  def buy_ticket_to_film(film)
+    ticket = Ticket.new({'customer_id' => @id, 'film_id' => film.id })
+    ticket.save
+    # ticket.film.price
+    # film.price
+    @funds = @funds - ticket.film.price
+    update()
+  end
+
 end
